@@ -11,10 +11,13 @@ pub struct Person {
 
 impl Person {
     pub fn from_file<P: AsRef<Path>>(path: P) -> Result<Self, Box<dyn std::error::Error>> {
-        let file = File::open(path)?;
-        let reader = BufReader::new(file);
-        let person = serde_json::from_reader(reader)?;
-        Ok(person)
+        Ok(
+            serde_json::from_reader(
+                BufReader::new(
+                    File::open(path)?
+                )
+            )?
+        )
     }
     pub fn get_names(&self) -> &Vec<String> {
         &self.names
