@@ -14,6 +14,12 @@ fn check_list(name: &str) -> bool {
     false
 }
 
+fn input(text: &str) -> String {
+    println!("{}",text);
+    std::io::stdin().read_line(&mut String::new()).expect("读取输入错误。")
+    .to_string()
+}
+
 fn main() {
     let mut badguys = Vec::new();
     println!("当前目录是：{}", env::current_dir()
@@ -25,4 +31,5 @@ fn main() {
         else {badguys.push(name)}
     }
     println!("未提交：{:?}",badguys);
+    input("按回车退出……");
 }
